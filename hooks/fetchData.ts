@@ -1,11 +1,11 @@
 import { Employee } from '@types'
 import { useEffect, useState } from 'react'
 
-export function useFetch<Type>(
+export function useFetch(
   url: string,
   options: RequestInit | undefined = undefined
 ) {
-  const [data, setData] = useState<Type | null>(null)
+  const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
 
   const fetchData = async () => {
