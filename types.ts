@@ -15,7 +15,7 @@ export interface Calendar {
   data: CalendarItem[]
 }
 
-interface EmployeeDetails {
+export interface EmployeeDetails {
   id: number
   first_name: string
   last_name: string
@@ -28,6 +28,6 @@ export interface Employee {
 }
 
 export interface HolidaysCalendarProps {
-  employees: EmployeeDetails[]
+  employees: EmployeeDetails[] | null
   // calendar: Calendar
 }
