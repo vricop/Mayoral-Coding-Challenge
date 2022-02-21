@@ -1,0 +1,68 @@
+.container {
+  max-width: 75rem;
+  padding-inline: 2rem;
+  margin-inline: auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar {
+  &__table {
+    border-spacing: 0;
+    display: block;
+    width: 100%;
+    overflow-y: auto;
+  }
+
+  &__table-header {
+    border-bottom: 4px solid var(--color-black);
+  }
+
+  &__employees,
+  &__month {
+    padding: 0.5rem 1rem;
+    border-bottom: 3px solid var(--color-light-gray);
+    position: sticky;
+    left: 0;
+  }
+
+  &__month {
+    z-index: 3;
+    text-align: left;
+  }
+
+  &__employees {
+    background-color: #fff;
+    z-index: 4;
+  }
+
+  &__row + &__row > &__cell {
+    border-top: 1px solid var(--color-light-gray);
+  }
+
+  &__cell {
+    background-color: #fff;
+    padding: 0.5rem;
+  }
+
+  &__employee {
+    position: sticky;
+    left: 0;
+  }
+
+  &__month-days {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 3ch;
+    font-variant: tabular-nums;
+    color: var(--color-gray);
+  }
+
+  &__month-day {
+    padding-block: 0.5ex;
+    padding-inline: 0.5ch;
+    text-align: center;
+  }
+}
