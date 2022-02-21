@@ -10,8 +10,8 @@ export function useFetch(
 
   const fetchData = async () => {
     const request = await fetch(url, options)
-    const response = await request.json()
-    setData(response)
+    const { data } = await request.json()
+    setData(data)
     setLoading(false)
   }
 
