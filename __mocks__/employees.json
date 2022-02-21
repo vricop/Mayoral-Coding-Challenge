@@ -1,0 +1,125 @@
+{
+  "//": "https://www.json-generator.com/",
+  "data": [
+    {
+      "id": 1,
+      "first_name": "Kane",
+      "last_name": "Rojas",
+      "total_holidays": 22
+    },
+    {
+      "id": 2,
+      "first_name": "Kara",
+      "last_name": "Hinton",
+      "total_holidays": 22
+    },
+    {
+      "id": 3,
+      "first_name": "Kane",
+      "last_name": "Mckee",
+      "total_holidays": 22
+    },
+    {
+      "id": 4,
+      "first_name": "Karyn",
+      "last_name": "Ross",
+      "total_holidays": 22
+    },
+    {
+      "id": 5,
+      "first_name": "Joy",
+      "last_name": "Rojas",
+      "total_holidays": 22
+    },
+    {
+      "id": 6,
+      "first_name": "Roy",
+      "last_name": "Hart",
+      "total_holidays": 22
+    },
+    {
+      "id": 7,
+      "first_name": "Powers",
+      "last_name": "Branch",
+      "total_holidays": 22
+    },
+    {
+      "id": 8,
+      "first_name": "Holly",
+      "last_name": "Camacho",
+      "total_holidays": 22
+    },
+    {
+      "id": 9,
+      "first_name": "Noble",
+      "last_name": "Wise",
+      "total_holidays": 22
+    },
+    {
+      "id": 10,
+      "first_name": "Bryant",
+      "last_name": "Howe",
+      "total_holidays": 22
+    },
+    {
+      "id": 11,
+      "first_name": "Reynolds",
+      "last_name": "Pope",
+      "total_holidays": 22
+    },
+    {
+      "id": 12,
+      "first_name": "Carney",
+      "last_name": "Shields",
+      "total_holidays": 22
+    },
+    {
+      "id": 13,
+      "first_name": "Savannah",
+      "last_name": "Glenn",
+      "total_holidays": 22
+    },
+    {
+      "id": 14,
+      "first_name": "Lucy",
+      "last_name": "Sellers",
+      "total_holidays": 22
+    },
+    {
+      "id": 15,
+      "first_name": "Eva",
+      "last_name": "Cole",
+      "total_holidays": 22
+    },
+    {
+      "id": 16,
+      "first_name": "Naomi",
+      "last_name": "Mayo",
+      "total_holidays": 22
+    },
+    {
+      "id": 17,
+      "first_name": "Maddox",
+      "last_name": "Wilkinson",
+      "total_holidays": 22
+    },
+    {
+      "id": 18,
+      "first_name": "Dale",
+      "last_name": "Sheppard",
+      "total_holidays": 22
+    },
+    {
+      "id": 19,
+      "first_name": "Marilyn",
+      "last_name": "Fischer",
+      "total_holidays": 22
+    },
+    {
+      "id": 20,
+      "first_name": "Mendoza",
+      "last_name": "Justice",
+      "total_holidays": 22
+    }
+  ]
+}
