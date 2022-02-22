@@ -1,11 +1,11 @@
 import { HolidaysCalendar } from '@/components/HolidaysCalendar'
-import { Icon } from '@/components/Icon'
-import { CalendarItem, Employee, EmployeeDetails } from '@types'
+import { groupInMounts } from '@/utils/groupInMonths'
+import { CalendarItem, EmployeeDetails } from '@types'
 import { useFetch } from 'hooks/fetchData'
 import type { NextPage } from 'next'
 
-type CalendarData = CalendarItem[] | null
-type EmployeeData = EmployeeDetails[] | null
+type CalendarData = CalendarItem[]
+type EmployeeData = EmployeeDetails[]
 
 const Home: NextPage = () => {
   const { data: employees, loading: loadingEmployees } =
@@ -13,16 +13,24 @@ const Home: NextPage = () => {
 
   const { data: calendar, loading: loadingCalendar } =
     useFetch<CalendarData>(`/api/calendar`)
-  const filteredCalendar = calendar?.filter(({ fecha }) =>
+
+  // Leave only 2022 data
+  const filteredCalendar = calendar.filter(({ fecha }) =>
     /2021\d{2}\d{2}/.test(fecha.toString())
   )
+
+  const groupedCalendar = groupInMounts(filteredCalendar)
+
+  console.dir({
+    groupedCalendar,
+  })
 
   return (
     <main className="container">
       {loadingEmployees ? (
         'Loading'
       ) : (
-        <HolidaysCalendar employees={employees} />
+        <HolidaysCalendar employees={employees} calendar={groupedCalendar} />
       )}
     </main>
   )

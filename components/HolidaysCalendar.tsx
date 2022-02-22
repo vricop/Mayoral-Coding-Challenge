@@ -1,7 +1,6 @@
-import { generateMonths } from '@/utils/getMonths'
-import { EmployeeDetails } from '@types'
-import { useEffect, useRef, useState } from 'react'
 import { Icon } from '@/components/Icon'
+import { CalendarItem, DayOfMonth, EmployeeDetails } from '@types'
+import { useEffect, useRef, useState } from 'react'
 
 // Pastel colors
 const colors = [
@@ -21,12 +20,16 @@ const colors = [
 
 export function HolidaysCalendar({
   employees,
+  calendar,
 }: {
   employees: EmployeeDetails[] | null
+  calendar: [string, DayOfMonth[]][]
 }) {
-  const months = generateMonths()
+  const months = calendar?.map(month => month[0])
   const [offset, setOffset] = useState(0)
   const employeesHeader = useRef<HTMLTableCellElement | null>(null)
+
+  console.dir({ months })
 
   useEffect(() => {
     if (!employeesHeader?.current) return
