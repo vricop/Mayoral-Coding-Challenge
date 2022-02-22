@@ -1,6 +1,7 @@
 import { generateMonths } from '@/utils/getMonths'
 import { EmployeeDetails } from '@types'
 import { useEffect, useRef, useState } from 'react'
+import { Icon } from '@/components/Icon'
 
 // Pastel colors
 const colors = [
@@ -26,8 +27,6 @@ export function HolidaysCalendar({
   const months = generateMonths()
   const [offset, setOffset] = useState(0)
   const employeesHeader = useRef<HTMLTableCellElement | null>(null)
-
-  console.dir({ employees })
 
   useEffect(() => {
     if (!employeesHeader?.current) return
@@ -56,7 +55,7 @@ export function HolidaysCalendar({
           <tr key={id} className="calendar__row">
             <th className="calendar__cell calendar__employee">
               <span className="calendar__employee-info">
-                👤
+                <Icon className="calendar__employee-icon" name="user" />
                 <span
                   title={`${first_name} ${last_name}`}
                   className="calendar__employee-full-name">

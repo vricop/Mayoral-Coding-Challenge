@@ -1,3 +1,5 @@
+import { HTMLAttributes } from 'react'
+
 export interface CalendarItem {
   fecha: number
   tipoId: 'F' | 'S' | ''
@@ -26,8 +28,15 @@ export interface Employee {
   '//': string
   data: EmployeeDetails[]
 }
-
 export interface HolidaysCalendarProps {
   employees: EmployeeDetails[] | null
-  // calendar: Calendar
+  // calendar: CalendarItem[] | null
+}
+
+export interface IconProps extends HTMLAttributes<SVGElement> {
+  name: 'user'
+  size?: string
+  width?: string
+  height?: string
+  href?: string
 }
