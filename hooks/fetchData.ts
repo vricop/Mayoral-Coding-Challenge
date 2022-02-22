@@ -5,7 +5,7 @@ export function useFetch<Type>(
   url: string,
   options: RequestInit | undefined = undefined
 ) {
-  const [data, setData] = useState<Type | null>(null)
+  const [data, setData] = useState<Type | []>([])
   const [loading, setLoading] = useState(true)
 
   const fetchData = async () => {
