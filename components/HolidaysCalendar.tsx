@@ -1,5 +1,5 @@
 import { generateMonths } from '@/utils/getMonths'
-import { HolidaysCalendarProps } from '@types'
+import { EmployeeDetails } from '@types'
 import { useEffect, useRef, useState } from 'react'
 
 // Pastel colors
@@ -18,7 +18,11 @@ const colors = [
   'peachpuff',
 ]
 
-export default function HolidaysCalendar({ employees }: HolidaysCalendarProps) {
+export function HolidaysCalendar({
+  employees,
+}: {
+  employees: EmployeeDetails[] | null
+}) {
   const months = generateMonths()
   const [offset, setOffset] = useState(0)
   const employeesHeader = useRef<HTMLTableCellElement | null>(null)
