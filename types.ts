@@ -1,13 +1,17 @@
 import { HTMLAttributes } from 'react'
 
+export type DayTypeID = 'F' | 'S' | ''
+
+export type DayType =
+  | 'Fin de Semana'
+  | 'Dia Laborable'
+  | 'Fin de Semana'
+  | 'Festivo Laboral'
+
 export interface CalendarItem {
   fecha: number
-  tipoId: 'F' | 'S' | ''
-  tipoDs:
-    | 'Fin de Semana'
-    | 'Dia Laborable'
-    | 'Fin de Semana'
-    | 'Festivo Laboral'
+  tipoId: DayTypeID
+  tipoDs: DayType
   color: 'AZUL' | 'ROJO' | 'BLANCO'
 }
 
@@ -15,6 +19,12 @@ export interface Calendar {
   errorCode: number
   errorMessage: null | string
   data: CalendarItem[]
+}
+
+export interface DayOfMonth {
+  day: number
+  type: string
+  id: DayTypeID
 }
 
 export interface EmployeeDetails {
