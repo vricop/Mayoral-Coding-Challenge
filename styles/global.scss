@@ -33,6 +33,12 @@ video,
 canvas,
 svg {
   display: block;
+}
+
+img,
+picture,
+video,
+canvas {
   max-width: 100%;
 }
 

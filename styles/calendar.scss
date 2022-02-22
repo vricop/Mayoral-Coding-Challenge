@@ -23,9 +23,10 @@
 
   &__employees,
   &__month {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1rem 0.5rem 1.65rem;
     border-bottom: 3px solid var(--color-light-gray);
     position: sticky;
+    top: 0;
     left: 0;
   }
 
@@ -53,10 +54,19 @@
     left: 0;
   }
 
+  &__employee + &__cell ~ &__cell {
+    padding-left: 1rem;
+  }
+
+  &__employee-icon {
+    color: var(--color-gray);
+  }
+
   &__employee-info {
     display: grid;
     grid-auto-flow: column;
     column-gap: 1ch;
+    align-items: center;
   }
 
   &__employee-chip {
