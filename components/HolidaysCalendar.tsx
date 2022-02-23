@@ -90,7 +90,7 @@ export function HolidaysCalendar({
       employeeVacations[userId].days === 0
     ) {
       toast.warn(
-        `${employees[userId].first_name} ${employees[userId].last_name}: ran out of vacation days`
+        `${employees?.[userId].first_name} ${employees?.[userId].last_name}: ran out of vacation days`
       )
       return
     }
