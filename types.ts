@@ -8,11 +8,13 @@ export type DayType =
   | 'Fin de Semana'
   | 'Festivo Laboral'
 
+export type DayColor = 'AZUL' | 'ROJO' | 'BLANCO'
+
 export interface CalendarItem {
   fecha: number
   tipoId: DayTypeID
   tipoDs: DayType
-  color: 'AZUL' | 'ROJO' | 'BLANCO'
+  color: DayColor
 }
 
 export interface Calendar {
@@ -25,6 +27,7 @@ export interface DayOfMonth {
   day: number
   type: string
   id: DayTypeID
+  color: DayColor
 }
 
 export interface EmployeeDetails {
