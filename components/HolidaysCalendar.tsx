@@ -1,6 +1,7 @@
 import { Icon } from '@/components/Icon'
 import { DayOfMonth, EmployeeDetails } from '@types'
 import { MouseEvent, useEffect, useRef, useState } from 'react'
+import { toast, ToastContainer } from 'react-toastify'
 
 // Pastel colors
 const colors = [
@@ -88,6 +89,9 @@ export function HolidaysCalendar({
       node.getAttribute('aria-selected') === 'false' &&
       employeeVacations[userId].days === 0
     ) {
+      toast.warn(
+        `${employees[userId].first_name} ${employees[userId].last_name}: ran out of vacation days`
+      )
       return
     }
 
@@ -96,63 +100,73 @@ export function HolidaysCalendar({
   }
 
   return (
-    <table className="calendar__table">
-      <thead className="calendar__table-header">
-        <tr>
-          <th ref={employeesHeader} className="calendar__employees">
-            Employees
-          </th>
-          {months?.map((month, index) => (
-            <th
-              key={month}
-              style={{ backgroundColor: colors[index], left: offset }}
-              className="calendar__month">
-              {month}
+    <>
+      <table className="calendar__table">
+        <thead className="calendar__table-header">
+          <tr>
+            <th ref={employeesHeader} className="calendar__employees">
+              Employees
             </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {employees?.map(employee => (
-          <tr key={employee.id} className="calendar__row">
-            <th className="calendar__cell calendar__employee">
-              <span className="calendar__employee-info">
-                <Icon className="calendar__employee-icon" name="user" />
-                <span
-                  title={`${employee.first_name} ${employee.last_name}`}
-                  className="calendar__employee-full-name">
-                  {`${employee.first_name} ${employee.last_name}`}
-                </span>
-                <span
-                  className="calendar__employee-chip"
-                  data-reached={
-                    employeeVacations?.[employee?.id]?.days === 0 ? true : null
-                  }>
-                  {employeeVacations?.[employee?.id]?.days}/22
-                </span>
-              </span>
-            </th>
-            {calendar.map(([month, days], index) => (
-              <td key={`${month}-${index}`} className="calendar__cell">
-                <div className="calendar__month-days">
-                  {days.map((day, index) => (
-                    <span
-                      aria-selected="false"
-                      className="calendar__month-day"
-                      data-color={day.color}
-                      data-user-id={employee.id}
-                      id={day.id}
-                      key={`${day.id}${index}`}
-                      onClick={handleClick}>
-                      {day.day}
-                    </span>
-                  ))}
-                </div>
-              </td>
+            {months?.map((month, index) => (
+              <th
+                key={month}
+                style={{ backgroundColor: colors[index], left: offset }}
+                className="calendar__month">
+                {month}
+              </th>
             ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {employees?.map(employee => (
+            <tr key={employee.id} className="calendar__row">
+              <th className="calendar__cell calendar__employee">
+                <span className="calendar__employee-info">
+                  <Icon className="calendar__employee-icon" name="user" />
+                  <span
+                    title={`${employee.first_name} ${employee.last_name}`}
+                    className="calendar__employee-full-name">
+                    {`${employee.first_name} ${employee.last_name}`}
+                  </span>
+                  <span
+                    className="calendar__employee-chip"
+                    data-reached={
+                      employeeVacations?.[employee?.id]?.days === 0
+                        ? true
+                        : null
+                    }>
+                    {employeeVacations?.[employee?.id]?.days}/22
+                  </span>
+                </span>
+              </th>
+              {calendar.map(([month, days], index) => (
+                <td key={`${month}-${index}`} className="calendar__cell">
+                  <div className="calendar__month-days">
+                    {days.map((day, index) => (
+                      <span
+                        aria-selected="false"
+                        className="calendar__month-day"
+                        data-color={day.color}
+                        data-user-id={employee.id}
+                        id={day.id}
+                        key={`${day.id}${index}`}
+                        onClick={handleClick}>
+                        {day.day}
+                      </span>
+                    ))}
+                  </div>
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <ToastContainer
+        position="bottom-center"
+        hideProgressBar={true}
+        theme="dark"
+        limit={1}
+      />
+    </>
   )
 }
