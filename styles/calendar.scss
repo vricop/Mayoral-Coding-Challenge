@@ -24,10 +24,12 @@
   &__employees,
   &__month {
     padding: 0.5rem 1rem 0.5rem 1.65rem;
-    border-bottom: 3px solid var(--color-light-gray);
+    border-bottom: 3px solid var(--color-black);
     position: sticky;
     top: 0;
     left: 0;
+    text-transform: uppercase;
+    font-size: 0.875rem;
   }
 
   &__month {
@@ -76,6 +78,13 @@
     display: inline-block;
     border-radius: 100vh;
     background-color: var(--color-light-green);
+    color: var(--color-dark-green);
+    min-width: 6ch;
+  }
+
+  &__employee-chip[data-reached] {
+    background-color: var(--color-gold);
+    color: var(--color-brown);
   }
 
   &__employee-full-name {
@@ -93,12 +102,40 @@
     grid-auto-flow: column;
     grid-auto-columns: 3ch;
     font-variant: tabular-nums;
-    color: var(--color-gray);
+    color: var(--color-darkslategrey);
   }
 
   &__month-day {
-    padding-block: 0.5ex;
-    padding-inline: 0.5ch;
+    width: 1.75em;
+    height: 1.75em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    border-radius: calc(999px);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  &__month-day[data-color='ROJO'],
+  &__month-day[data-color='BLUE'] {
+    cursor: not-allowed;
+  }
+
+  &__month-day[aria-selected='true'] {
+    background-color: var(--color-light-green);
+    color: var(--color-dark-green);
+  }
+
+  &__month-day[data-color='ROJO'] {
+    background-color: var(--color-mistyrose);
+    box-shadow: 0 0 0 2px white;
+    color: var(--color-darkred);
+  }
+
+  &__month-day[data-color='AZUL'] {
+    box-shadow: 0 0 0 2px white;
+    background-color: var(--color-lightblue);
+    color: var(--color-mediumblue);
   }
 }

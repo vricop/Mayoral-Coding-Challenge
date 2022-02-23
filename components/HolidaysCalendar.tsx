@@ -18,6 +18,10 @@ const colors = [
   'peachpuff',
 ]
 
+interface EmployeeVacation {
+  [index: number]: { days: number }
+}
+
 export function HolidaysCalendar({
   employees,
   calendar,
@@ -27,14 +31,69 @@ export function HolidaysCalendar({
 }) {
   const months = calendar?.map(month => month[0])
   const [offset, setOffset] = useState(0)
+  const [employeeVacations, setEmployeeVacations] = useState<EmployeeVacation>(
+    {}
+  )
   const employeesHeader = useRef<HTMLTableCellElement | null>(null)
 
-  console.dir({ months })
+  useEffect(() => {
+    if (employees === null) return
+    const employeeVacationsTemp: EmployeeVacation = {}
+
+    employees.forEach(({ id, total_holidays }) => {
+      employeeVacationsTemp[id] = { days: total_holidays }
+    })
+
+    setEmployeeVacations(employeeVacationsTemp)
+  }, [employees])
 
   useEffect(() => {
     if (!employeesHeader?.current) return
     setOffset(employeesHeader.current.offsetWidth)
   }, [employeesHeader.current])
+
+  function toggleAriaSelected(node: HTMLSpanElement) {
+    const ariaSelectedAttribute = node.getAttribute('aria-selected')
+    const isSelected = ariaSelectedAttribute === 'true' ? 'false' : 'true'
+    node.setAttribute('aria-selected', isSelected)
+  }
+
+  function toggleEmployeeVacationDaysCounter(node: HTMLSpanElement) {
+    const userId: number = +node.dataset.userId!
+    const isSelected = node.getAttribute('aria-selected') === 'true'
+
+    setEmployeeVacations(oldState => {
+      const valueTemp = oldState[userId].days
+      // Toggle vacation days counter
+      let value = isSelected ? valueTemp + -1 : valueTemp + 1
+
+      return {
+        ...oldState,
+        [userId]: {
+          days: value,
+        },
+      }
+    })
+  }
+
+  function handleClick(event: MouseEvent<HTMLSpanElement>) {
+    const node = event.currentTarget
+    const userId = +node.dataset.userId!
+
+    // Stop if it's not a working day
+    if (node.id !== '') return
+
+    // Stop if user has 0 vacation days remaining
+    if (
+      node.getAttribute('aria-selected') === 'false' &&
+      employeeVacations[userId].days === 0
+    ) {
+      return
+    }
+
+    toggleAriaSelected(node)
+    toggleEmployeeVacationDaysCounter(node)
+  }
 
   return (
     <table className="calendar__table">
@@ -64,14 +123,18 @@ export function HolidaysCalendar({
                   className="calendar__employee-full-name">
                   {`${employee.first_name} ${employee.last_name}`}
                 </span>
-                <span className="calendar__employee-chip">
-                  0/{total_holidays}
+                <span
+                  className="calendar__employee-chip"
+                  data-reached={
+                    employeeVacations?.[employee?.id]?.days === 0 ? true : null
+                  }>
+                  {employeeVacations?.[employee?.id]?.days}/22
                 </span>
               </span>
             </th>
             {calendar.map(([month, days], index) => (
               <td key={`${month}-${index}`} className="calendar__cell">
-              <div className="calendar__month-days">
+                <div className="calendar__month-days">
                   {days.map((day, index) => (
                     <span
                       aria-selected="false"
@@ -80,11 +143,12 @@ export function HolidaysCalendar({
                       data-user-id={employee.id}
                       id={day.id}
                       key={`${day.id}${index}`}
+                      onClick={handleClick}>
                       {day.day}
                     </span>
                   ))}
-              </div>
-            </td>
+                </div>
+              </td>
             ))}
           </tr>
         ))}
