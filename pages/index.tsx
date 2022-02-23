@@ -27,8 +27,8 @@ const Home: NextPage = () => {
 
   return (
     <main className="container">
-      {loadingEmployees ? (
-        'Loading'
+      {loadingEmployees && loadingCalendar ? (
+        'Loading...'
       ) : (
         <HolidaysCalendar employees={employees} calendar={groupedCalendar} />
       )}
