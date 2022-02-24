@@ -1,6 +1,8 @@
 import { CalendarItem, DayColor, DayOfMonth, DayType, DayTypeID } from '@types'
 
-export function groupInMounts(months: CalendarItem[] | undefined) {
+export function groupInMounts(
+  months: CalendarItem[] | undefined
+): [string, DayOfMonth[]][] {
   if (months === undefined) return []
 
   let monthName: string, day: number, date: Date
