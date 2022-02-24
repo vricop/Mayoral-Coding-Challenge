@@ -53,3 +53,12 @@ export interface IconProps extends HTMLAttributes<SVGElement> {
   height?: string
   href?: string
 }
+
+export interface VacationsTaken {
+  [id: number]: {
+    [month: string]: number[]
+  }
+}
+export interface VacationsLeft {
+  [id: number]: number
+}
