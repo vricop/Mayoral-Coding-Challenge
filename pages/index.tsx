@@ -21,10 +21,6 @@ const Home: NextPage = () => {
 
   const groupedCalendar = groupInMounts(filteredCalendar)
 
-  console.dir({
-    groupedCalendar,
-  })
-
   return (
     <main className="container">
       {loadingEmployees && loadingCalendar ? (
