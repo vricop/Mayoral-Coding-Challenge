@@ -1,5 +1,12 @@
 import { Icon } from '@/components/Icon'
-import { DayOfMonth, EmployeeDetails } from '@types'
+import { isDaySelected } from '@/utils/isDaySelected'
+import { toggleNumbersArray } from '@/utils/toggleNumbersArray'
+import {
+  DayOfMonth,
+  EmployeeDetails,
+  VacationsLeft,
+  VacationsTaken,
+} from '@types'
 import { MouseEvent, useEffect, useRef, useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
 
@@ -19,10 +26,6 @@ const colors = [
   'peachpuff',
 ]
 
-interface EmployeeVacation {
-  [index: number]: { days: number }
-}
-
 export function HolidaysCalendar({
   employees,
   calendar,
@@ -32,20 +35,27 @@ export function HolidaysCalendar({
 }) {
   const months = calendar?.map(month => month[0])
   const [offset, setOffset] = useState(0)
-  const [employeeVacations, setEmployeeVacations] = useState<EmployeeVacation>(
-    {}
-  )
+  const [vacationsLeft, setVacationsLeft] = useState<VacationsLeft>({})
+  const [vacationsTaken, setVacationsTaken] = useState<VacationsTaken>({})
+
   const employeesHeader = useRef<HTMLTableCellElement | null>(null)
 
   useEffect(() => {
     if (employees === null) return
-    const employeeVacationsTemp: EmployeeVacation = {}
 
-    employees.forEach(({ id, total_holidays }) => {
-      employeeVacationsTemp[id] = { days: total_holidays }
+    /**
+     * TODO:
+     * 1. Load from localStorage if present
+     * 2. Otherwise set a new state and save in localStorage
+     */
+
+    let vacationsLeftTemp: VacationsLeft = {}
+
+    employees.forEach(employee => {
+      vacationsLeftTemp[employee.id] = 22
     })
 
-    setEmployeeVacations(employeeVacationsTemp)
+    setVacationsLeft(vacationsLeftTemp)
   }, [employees])
 
   useEffect(() => {
@@ -53,41 +63,52 @@ export function HolidaysCalendar({
     setOffset(employeesHeader.current.offsetWidth)
   }, [employeesHeader.current])
 
-  function toggleAriaSelected(node: HTMLSpanElement) {
-    const ariaSelectedAttribute = node.getAttribute('aria-selected')
-    const isSelected = ariaSelectedAttribute === 'true' ? 'false' : 'true'
-    node.setAttribute('aria-selected', isSelected)
-  }
+  function updateEmployeeVacationDetails(daySlot: HTMLSpanElement) {
+    const userId: number = +daySlot.dataset.userId!
+    const month: string = daySlot.dataset.month!
+    const incomingDay = +daySlot.innerText
 
-  function toggleEmployeeVacationDaysCounter(node: HTMLSpanElement) {
-    const userId: number = +node.dataset.userId!
-    const isSelected = node.getAttribute('aria-selected') === 'true'
-
-    setEmployeeVacations(oldState => {
-      const valueTemp = oldState[userId].days
+    setVacationsLeft(oldState => {
       // Toggle vacation days counter
-      let value = isSelected ? valueTemp + -1 : valueTemp + 1
+      const value = vacationsTaken?.[userId]?.[month]?.includes(incomingDay)
+        ? oldState[userId] + 1
+        : oldState[userId] - 1
+
+      return {
+        ...oldState,
+        [userId]: value,
+      }
+    })
+
+    setVacationsTaken(oldState => {
+      const oldValues = oldState?.[userId]?.[month]
+      const isMonthPresent = oldValues ? true : false
+
+      const value = isMonthPresent
+        ? toggleNumbersArray(oldValues, incomingDay)
+        : [incomingDay]
 
       return {
         ...oldState,
         [userId]: {
-          days: value,
+          ...oldState[userId],
+          [month]: value,
         },
       }
     })
   }
 
   function handleClick(event: MouseEvent<HTMLSpanElement>) {
-    const node = event.currentTarget
-    const userId = +node.dataset.userId!
+    const daySlot = event.currentTarget
+    const userId = +daySlot.dataset.userId!
 
     // Stop if it's not a working day
-    if (node.id !== '') return
+    if (daySlot.id !== '') return
 
     // Stop if user has 0 vacation days remaining
     if (
-      node.getAttribute('aria-selected') === 'false' &&
-      employeeVacations[userId].days === 0
+      daySlot.getAttribute('aria-selected') === 'false' &&
+      vacationsLeft[userId] === 0
     ) {
       toast.warn(
         `${employees?.[userId].first_name} ${employees?.[userId].last_name}: ran out of vacation days`
@@ -95,8 +116,7 @@ export function HolidaysCalendar({
       return
     }
 
-    toggleAriaSelected(node)
-    toggleEmployeeVacationDaysCounter(node)
+    updateEmployeeVacationDetails(daySlot)
   }
 
   return (
@@ -131,11 +151,10 @@ export function HolidaysCalendar({
                   <span
                     className="calendar__employee-chip"
                     data-reached={
-                      employeeVacations?.[employee?.id]?.days === 0
-                        ? true
-                        : null
+                      vacationsLeft[employee.id] === 0 ? true : null
                     }>
-                    {employeeVacations?.[employee?.id]?.days}/22
+                    {vacationsLeft[employee.id]}
+                    /22
                   </span>
                 </span>
               </th>
@@ -144,10 +163,14 @@ export function HolidaysCalendar({
                   <div className="calendar__month-days">
                     {days.map((day, index) => (
                       <span
-                        aria-selected="false"
+                        aria-selected={isDaySelected(
+                          vacationsTaken[employee.id]?.[month],
+                          day.day
+                        )}
                         className="calendar__month-day"
                         data-color={day.color}
                         data-user-id={employee.id}
+                        data-month={month}
                         id={day.id}
                         key={`${day.id}${index}`}
                         onClick={handleClick}>
