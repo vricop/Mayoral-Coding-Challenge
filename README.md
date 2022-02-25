@@ -1,34 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Coding challange for Mayoral
 
-## Getting Started
+<img width="180" height="51.428" alt="Mayoral" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkNhcGFfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSIzNTBweCIgaGVpZ2h0PSIxMDBweCIgdmlld0JveD0iMCAwIDM1MCAxMDAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDM1MCAxMDAiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cmVjdCB4PSIwLjUiIHk9IjAuNSIgZGlzcGxheT0ibm9uZSIgZmlsbD0iI0ZGRkZGRiIgd2lkdGg9IjM1MCIgaGVpZ2h0PSIxMDAiLz4KPGc+Cgk8cGF0aCBmaWxsPSIjMDA3MkNFIiBkPSJNNzkuOCw0My4yVjcyYy0yLjQsMC40LTQuOCwwLjYwMi03LjIsMC42MDJTNjcuOCw3Mi40LDY1LjQsNzJWNDYuNGMwLTUuNy0yLjctOC43LTguMS04LjcgICBjLTMuNywwLTYsMS4zOTktNy43LDIuNmMwLjEsMSwwLjIsMS45LDAuMiwyLjlWNzJjLTIuNCwwLjQtNC44LDAuNjAyLTcuMiwwLjYwMlMzNy44LDcyLjQsMzUuNSw3MlY0Ni40YzAtNS43LTIuOC04LjctOC4yLTguNyAgIGMtMy4yLDAtNS43LDAuODk5LTcuNCwxLjg5OVY3MmMtMi40LDAuNC00LjgsMC42MDItNy4yLDAuNjAyQzEwLjMsNzIuNjAyLDgsNzIuNCw1LjYsNzJWMzIuM2MzLTIuOCwxMS42LTcuNiwyMi45LTcuNiAgIGM2LjUsMCwxMS41LDEuNiwxNC45LDQuM2MzLjctMi4zLDktNC4zLDE1LjItNC4zQzcyLjksMjQuNyw3OS44LDMyLjUsNzkuOCw0My4yIi8+Cgk8cGF0aCBmaWxsPSIjMDA3MkNFIiBkPSJNMTMwLjcsNDUuMXYyNC4wMDFjLTYuOCwyLjc5OS0xNC44LDQuNS0yMy4xLDQuNWMtMTMuMSwwLTIwLjctNS0yMC43LTE1Qzg2LjksNDksOTUuMiw0NCwxMDYuOSw0NC4xICAgYzMuNywwLjEwMSw2LjgsMC41LDkuNiwxLjR2LTEuOGMwLTQtMi43LTYuOC05LjUtNi44Yy01LjQsMC0xMCwyLjEtMTIuNCw0Yy0zLjEtMS43LTUuNS00LjktNi4yLTkuMmMyLjYtMi4zLDkuOC02LjcsMTkuOS02LjcgICBDMTIxLjUsMjUsMTMwLjcsMzAuOCwxMzAuNyw0NS4xIE0xMDkuNSw2My42MDJjMi4zLDAsNC42LTAuNCw2LjktMS4xMDJ2LTguMzk4QzExNC4xLDUzLjQsMTExLjUsNTMsMTA4LjUsNTMgICBjLTQuNSwwLTcuMywxLjUtNy4zLDQuOUMxMDEuMiw2MS4zLDEwNCw2My42MDIsMTA5LjUsNjMuNjAyIi8+Cgk8cGF0aCBmaWxsPSIjMDA3MkNFIiBkPSJNMTg0LjEsMjcuMmMtNCwyOS4yLTE1LjEsNTAuNy0zNS44LDY1LjVjLTQuNC0xLjUtNy4zLTUuOC04LjYtOS45YzUuMS00LjEsOS42LTguMTk4LDEyLjUtMTIuMTk4ICAgQzE0Mi44LDU2LjEwMiwxMzguNiw0My42LDEzNSwyNy4xYzItMC41LDYuNS0xLjEsMTAuNS0xLjFjMS43LDAsMy44LDAuMSw1LjQsMC4zYzEuNywxMC42MDEsNC45LDIyLDguOSwzMS4yICAgYzAuNSwxLjEwMiwwLjgsMS45LDEsMi42MDJjMC4yLTEsMC41LTEuOSwwLjgtMi42MDJjNC05LjMsNi4yLTIwLjUsNy41LTMxLjJjMS44LTAuMiwzLjktMC4zLDUuNy0wLjMgICBDMTc4LjE5OSwyNi4xLDE4MS41LDI2LjUsMTg0LjEsMjcuMiIvPgoJPHBhdGggZmlsbD0iIzAwNzJDRSIgZD0iTTI3Ni4xOTksMjYuMmMtMC4xLDQuNy0xLjM5OCw5LjItNC4xLDEyLjM5OWMtMS42OTktMC41LTMuNS0wLjY5OS01LjUtMC42OTljLTMsMC01LjUsMC42LTcsMS4zVjcyICAgYy0yLjMsMC40LTQuOCwwLjYwMi03LjE5OSwwLjYwMmMtMi40LDAtNC43MDEtMC4yMDEtNy4xMDEtMC42MDJWMzEuOGMzLjE5OS0yLjg5OSwxMC4zLTcsMjAuMy03QzI3MCwyNC44LDI3My41LDI1LjMsMjc2LjE5OSwyNi4yICAgIi8+Cgk8cGF0aCBmaWxsPSIjMDA3MkNFIiBkPSJNMzIxLjksNDUuMXYyNC4wMDFjLTYuODAxLDIuNzk5LTE0LjgwMSw0LjUtMjMuMTAxLDQuNWMtMTMuMTAyLDAtMjAuNy01LTIwLjctMTUgICBDMjc4LjEsNDksMjg2LjQsNDQsMjk4LjEsNDQuMWMzLjcwMSwwLjEwMSw2LjgwMSwwLjUsOS42MDEsMS40di0xLjhjMC00LTIuNjk5LTYuOC05LjUtNi44Yy01LjM5OCwwLTEwLDIuMS0xMi4zOTgsNCAgIGMtMy4xMDItMS43LTUuNS00LjktNi4yLTkuMmMyLjYtMi4zLDkuODAxLTYuNywxOS44OTktNi43QzMxMi42OTksMjUsMzIxLjksMzAuOCwzMjEuOSw0NS4xIE0zMDAuNiw2My42MDIgICBjMi4zMDEsMCw0LjYwMS0wLjQsNi45LTEuMTAydi04LjM5OEMzMDUuMTk5LDUzLjQsMzAyLjYsNTMsMjk5LjYsNTNjLTQuNSwwLTcuMjk5LDEuNS03LjI5OSw0LjkgICBDMjkyLjMwMSw2MS4zLDI5NS4xLDYzLjYwMiwzMDAuNiw2My42MDIiLz4KCTxwYXRoIGZpbGw9IiMwMDcyQ0UiIGQ9Ik0zMzEsNzIuMTAyVjguOWMyLjE5OS0wLjQsNC42LTAuNjAxLDctMC42MDFzNC45LDAuMiw3LjQsMC42MDF2NjMuMmMtMi4yMDEsMC4zOTktNC43MDEsMC42MDEtNy4xMDEsMC42MDEgICBDMzM1LjksNzIuNjAyLDMzMy41LDcyLjQsMzMxLDcyLjEwMiIvPgoJPHBhdGggZmlsbD0iIzAwNzJDRSIgZD0iTTIxMi42OTksMjQuN2MtMTQuNiwwLTI1LjE5OSw5LjctMjUuMTk5LDI0LjVjMCwxNS4xLDEwLjQsMjQuMzk5LDI1LDI0LjM5OVMyMzcuNjk5LDYzLjksMjM3LjY5OSw0OS4yICAgQzIzNy42OTksMzQuMywyMjcuMTk5LDI0LjcsMjEyLjY5OSwyNC43eiBNMjI1LjE5OSw1OS4yYy0wLjE5OSwwLTAuMzk4LDAtMC42LDBsMCwwSDIwMWwwLDBjLTMuNi0wLjMtNi41LTMuNC02LjUtNy4xMDEgICBjMC0zLjM5OSwyLjQtNi4zMDEsNS42OTktNi44OTljLTAuMTk5LTAuOC0wLjM5OC0xLjctMC4zOTgtMi42MDFjMC01LjEsNC4xLTkuMTk5LDkuMTk5LTkuMTk5YzQuNSwwLDguMTk5LDMuMTk5LDksNy4zOTkgICBjMC41LTAuMSwxLTAuMiwxLjUtMC4yYzMuNjk5LDAsNi42LDMsNi42LDYuNjAxYzAsMC4zLDAsMC42LTAuMSwwLjg5OWMyLjY5OSwwLjQsNC44MDEsMi43LDQuODAxLDUuNSAgIEMyMzAuNjk5LDU2LjcsMjI4LjE5OSw1OS4yLDIyNS4xOTksNTkuMnoiLz4KPC9nPgo8L3N2Zz4=" />
 
-First, run the development server:
+Challange: create a calendar app for managing employee vacations. 1) higlight holidays in blue & weekends in red, 2) keep track of remaining vacations next to the employee's name, and 3) keep data stored in the `localStorage`
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Technologies used
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- React
+- Next.js
+- Typescript
+- Sass
+- React toastify
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## About my process
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+I've used Next.js so that I could mock the handed json files as api calls. These are called [API routes in Next.js](https://nextjs.org/docs/api-routes/introduction). Typescript was added so that I could practice my recentlty acquired skill in this topic. I also added [React toastify](https://fkhadra.github.io/react-toastify/introduction) for giving some feedback to the user once an employee runs out of vacations days.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Responsive
 
-## Learn More
+![Calendar App - Desktop](public/images/calendar-app-desktop.png)
 
-To learn more about Next.js, take a look at the following resources:
+![Calendar App - Desktop](public/images/calendar-app-mobile.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## UX/UI
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+![Calendar App - Desktop](public/images/calendar-ui-ux.png)
 
-## Deploy on Vercel
+## WCAG Compliance
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Web Content Accessibility Guidelines for colors. A nice combination of pastel colors for better constrast and readability.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![Calendar App - Desktop](public/images/colors.png)
