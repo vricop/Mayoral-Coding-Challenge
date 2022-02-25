@@ -139,3 +139,14 @@
     color: var(--color-mediumblue);
   }
 }
+
+.calendar-wrapper {
+  width: 100%;
+  display: grid;
+  grid-auto-flow: row;
+  row-gap: 2rem;
+}
+
+.info-tip {
+  font-size: 1.125rem;
+}

@@ -138,7 +138,11 @@ export function HolidaysCalendar({
   }
 
   return (
-    <>
+    <div className="calendar-wrapper">
+      <p className="info-tip">
+        <strong>Tip</strong>: to scroll horizontally hold{' '}
+        <kbd>Shift (&#8679;)</kbd> + <kbd>scroll</kbd>{' '}
+      </p>
       <table className="calendar__table">
         <thead className="calendar__table-header">
           <tr>
@@ -208,6 +212,6 @@ export function HolidaysCalendar({
         theme="dark"
         limit={1}
       />
-    </>
+    </div>
   )
 }

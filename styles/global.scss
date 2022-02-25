@@ -78,3 +78,11 @@ h6 {
   --color-gold: gold;
   --color-brown: brown;
 }
+
+kbd {
+  background-color: var(--color-lightblue);
+  padding: 0.19ex 0.5ch;
+  font-family: monospace;
+  text-transform: uppercase;
+  font-size: 0.875em;
+}
