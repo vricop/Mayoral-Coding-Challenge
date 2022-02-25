@@ -1,5 +1,9 @@
 import { Icon } from '@/components/Icon'
 import { isDaySelected } from '@/utils/isDaySelected'
+import { isStateEmpty } from '@/utils/isStateEmpty'
+import getSlotFromLocalStorage, {
+  setSlotInLocalStorage,
+} from '@/utils/manageLocalStorage'
 import { toggleNumbersArray } from '@/utils/toggleNumbersArray'
 import {
   DayOfMonth,
@@ -43,12 +47,6 @@ export function HolidaysCalendar({
   useEffect(() => {
     if (employees === null) return
 
-    /**
-     * TODO:
-     * 1. Load from localStorage if present
-     * 2. Otherwise set a new state and save in localStorage
-     */
-
     let vacationsLeftTemp: VacationsLeft = {}
 
     employees.forEach(employee => {
@@ -57,6 +55,25 @@ export function HolidaysCalendar({
 
     setVacationsLeft(vacationsLeftTemp)
   }, [employees])
+
+  useEffect(() => {
+    if ('vacationsLeft' in localStorage) {
+      setVacationsLeft(getSlotFromLocalStorage('vacationsLeft'))
+    }
+    if ('vacationsTaken' in localStorage) {
+      setVacationsTaken(getSlotFromLocalStorage('vacationsTaken'))
+    }
+  }, [])
+
+  useEffect(() => {
+    if (isStateEmpty(vacationsLeft)) return
+    setSlotInLocalStorage('vacationsLeft', vacationsLeft)
+  }, [vacationsLeft])
+
+  useEffect(() => {
+    if (isStateEmpty(vacationsTaken)) return
+    setSlotInLocalStorage('vacationsTaken', vacationsTaken)
+  }, [vacationsTaken])
 
   useEffect(() => {
     if (!employeesHeader?.current) return
@@ -110,8 +127,9 @@ export function HolidaysCalendar({
       daySlot.getAttribute('aria-selected') === 'false' &&
       vacationsLeft[userId] === 0
     ) {
+      const employee = employees?.find(employee => employee.id === userId)
       toast.warn(
-        `${employees?.[userId].first_name} ${employees?.[userId].last_name}: ran out of vacation days`
+        `${employee?.first_name} ${employee?.last_name}: ran out of vacation days`
       )
       return
     }
